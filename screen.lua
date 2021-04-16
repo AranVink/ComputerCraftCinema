@@ -33,7 +33,7 @@ local function drawFrames()
     for f = 0,numberOfFrames,1
     do
         -- term.native().print("Drawing frame " .. f)
-        local img = paintutils.loadImage("frames/".. f .. ".nfp")
+        local img = paintutils.loadImage("frames/frame".. f .. ".nfp")
         paintutils.drawImage(img,1,1)
         os.sleep(1)
         term.setBackgroundColor(colors.black)
