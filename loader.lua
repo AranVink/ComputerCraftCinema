@@ -10,7 +10,7 @@ if not http then
     return
 end
  
-function GetUrl( sUrl )
+local function getUrl( sUrl )
     --write( "Connecting to " .. sUrl .. "... " )
 
     local ok, err = http.checkURL( sUrl )
@@ -35,8 +35,8 @@ function GetUrl( sUrl )
     return sResponse
 end
 
-function GetAndSave(sUrl, sPath)
-    local res = GetUrl( sUrl )
+local function getAndSave(sUrl, sPath)
+    local res = getUrl( sUrl )
     if res then
         fs.delete(sPath)
         local file = fs.open( sPath, "wb" )
@@ -45,6 +45,15 @@ function GetAndSave(sUrl, sPath)
 
     end
 end
+
+local function list_iter (t)
+    local i = 0
+    local n = table.getn(t)
+    return function ()
+             i = i + 1
+             if i <= n then return t[i] end
+           end
+  end
 
 print("Loading scripts")
 
