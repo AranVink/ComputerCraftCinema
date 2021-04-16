@@ -14,12 +14,12 @@ local function resetMonitor( monitor )
     term.redirect(term.native())
 end
 
-local numberOfFrames = 3
+local numberOfFrames = 11
 
 local function loadFrames()
     for f = 0,numberOfFrames,1
     do
-        local filename = "frames/" .. f .. ".nfp"
+        local filename = "frames/frame" .. f .. ".nfp"
         local sUrl = GitHubUrl .. filename
         local sFile = filename
         local sPath = shell.resolve( sFile )
@@ -32,10 +32,12 @@ end
 local function drawFrames()
     for f = 0,numberOfFrames,1
     do
-        term.native().print("Drawing frame " .. f)
+        -- term.native().print("Drawing frame " .. f)
         local img = paintutils.loadImage("frames/".. f .. ".nfp")
         paintutils.drawImage(img,1,1)
         os.sleep(1)
+        term.setBackgroundColor(colors.black)
+        term.clear()
     end
 end
 
