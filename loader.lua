@@ -44,7 +44,7 @@ function getAndSave(sUrl, sPath)
 end
 
 -- Do the get
-local sUrl = GitHubUrl + "screen.lua"--tArgs[1]
+local sUrl = GitHubUrl .. "screen.lua"--tArgs[1]
 local sFile = "screen.lua" --tArgs[2]
 local sPath = shell.resolve( sFile )
 

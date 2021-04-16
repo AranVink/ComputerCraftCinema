@@ -14,7 +14,7 @@ local function resetMonitor( monitor )
 end
 
 local filename = "frames/1.nfp"
-local sUrl = GitHubUrl + filename
+local sUrl = GitHubUrl .. filename
 local sFile = filename
 local sPath = shell.resolve( sFile )
 
@@ -22,7 +22,7 @@ print("Loading frame 1")
 getAndSave(sUrl, sPath)
 
 local filename = "frames/2.nfp"
-local sUrl = GitHubUrl + filename
+local sUrl = GitHubUrl .. filename
 local sFile = filename
 local sPath = shell.resolve( sFile )
 
