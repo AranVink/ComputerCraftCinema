@@ -30,8 +30,8 @@ local function get( sUrl )
 end
  
 -- Determine file to download
-local sUrl = "https://raw.githubusercontent.com/AranVink/ComputerCraftCinema/main/test.lua"--tArgs[1]
-local sFile = "test.lua" --tArgs[2]
+local sUrl = "https://raw.githubusercontent.com/AranVink/ComputerCraftCinema/main/screen.lua"--tArgs[1]
+local sFile = "screen.lua" --tArgs[2]
 local sPath = shell.resolve( sFile )
 --if fs.exists( sPath ) then
 --    print( "File already exists" )
@@ -46,5 +46,5 @@ if res then
     file.write( res )
     file.close()
     print( "Load complete, executing: ")
-    shell.run("test")
+    shell.run("screen")
 end
