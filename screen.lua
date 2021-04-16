@@ -24,7 +24,7 @@ local function loadFrames()
         local sFile = filename
         local sPath = shell.resolve( sFile )
 
-        print("Loading frame " .. f)
+        print("Loading frame " .. f .. " " .. os.time())
         getAndSave(sUrl, sPath)
     end
 end
@@ -34,6 +34,7 @@ local function drawFrames()
     do
         local img = paintutils.loadImage("frames/".. f .. ".nfp")
         paintutils.drawImage(img,1,1)
+        os.sleep(1)
     end
 end
 
