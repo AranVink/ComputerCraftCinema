@@ -42,6 +42,7 @@ local sPath = shell.resolve( sFile )
 local res = get( sUrl )
 print("Loading scripts")
 if res then
+    fs.delete(sPath)
     local file = fs.open( sPath, "wb" )
     file.write( res )
     file.close()
