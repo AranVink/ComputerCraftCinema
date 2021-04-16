@@ -19,7 +19,7 @@ function GetUrl( sUrl )
         return nil
     end
 
-    local response = http.get( sUrl , nil , true )
+    local response = http.get( sUrl  .. "?r=".. os.time() , nil , true )
     if not response then
         print( "Failed." )
         return nil

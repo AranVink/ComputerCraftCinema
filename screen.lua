@@ -25,7 +25,7 @@ local function loadFrames()
         local sPath = shell.resolve( sFile )
 
         print("Loading frame " .. f .. " " .. os.time())
-        getAndSave(sUrl, sPath)
+        GetAndSave(sUrl, sPath)
     end
 end
 

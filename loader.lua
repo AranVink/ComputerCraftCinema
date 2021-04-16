@@ -22,7 +22,8 @@ local function getUrl( sUrl )
         return nil
     end
 
-    local response = http.get( sUrl , nil , true )
+    -- Add time to http request to ensure it is not cached
+    local response = http.get( sUrl  .. "?r=".. os.time() , nil , true )
     if not response then
         print( "Failed." )
         return nil
