@@ -1,6 +1,3 @@
--- This script can be run using wget run, to download all the necesarry files to the computer in computercraft.
--- There is some code duplication here with cinemahttp, because we cannot use require at this point (since nothing is downloaded yet)
-
 -- Base path for HTTP download
 GitHubUrl = "https://raw.githubusercontent.com/AranVink/ComputerCraftCinema/main/"
 
@@ -11,7 +8,7 @@ if not http then
 end
  
 function GetUrl( sUrl )
-    --write( "Connecting to " .. sUrl .. "... " )
+    write( "Connecting to " .. sUrl .. "... " )
 
     local ok, err = http.checkURL( sUrl )
     if not ok then
@@ -28,7 +25,7 @@ function GetUrl( sUrl )
         return nil
     end
 
-    -- print( "Success." )
+    print( "Success." )
 
     local sResponse = response.readAll()
     response.close()
@@ -45,21 +42,3 @@ function GetAndSave(sUrl, sPath)
 
     end
 end
-
-print("Loading scripts")
-
-local files = {
-    "screen.lua",
-    "cinemahttp.lua"
-}
-
-for file in list_iter(files) do
-    print("Downloading file " .. file)
-    local filename = file
-    local sUrl = GitHubUrl .. filename
-    local sFile = filename
-    local sPath = shell.resolve( sFile )
-    getAndSave(sUrl, sPath)
-end
-
-print("Done loading scripts")

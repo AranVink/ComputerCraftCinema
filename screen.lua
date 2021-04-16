@@ -1,4 +1,4 @@
-require("loader")
+require("cinemahttp")
 local function initializeMonitor( monitor )
     term.redirect(monitor)
     term.setBackgroundColor(colors.black)
