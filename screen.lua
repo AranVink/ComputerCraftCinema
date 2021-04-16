@@ -1,3 +1,4 @@
+require("loader")
 local function initializeMonitor( monitor )
     term.redirect(monitor)
     term.setBackgroundColor(colors.black)
@@ -13,36 +14,38 @@ local function resetMonitor( monitor )
     term.redirect(term.native())
 end
 
-local filename = "frames/1.nfp"
-local sUrl = GitHubUrl .. filename
-local sFile = filename
-local sPath = shell.resolve( sFile )
+local numberOfFrames = 3
 
-print("Loading frame 1")
-getAndSave(sUrl, sPath)
+local function loadFrames()
+    for f = 0,numberOfFrames,1
+    do
+        local filename = "frames/" .. f .. ".nfp"
+        local sUrl = GitHubUrl .. filename
+        local sFile = filename
+        local sPath = shell.resolve( sFile )
 
-local filename = "frames/2.nfp"
-local sUrl = GitHubUrl .. filename
-local sFile = filename
-local sPath = shell.resolve( sFile )
+        print("Loading frame " .. f)
+        getAndSave(sUrl, sPath)
+    end
+end
 
-print("Loading frame 2")
-getAndSave(sUrl, sPath)
+local function drawFrames()
+    for f = 0,numberOfFrames,1
+    do
+        local img = paintutils.loadImage("frames/".. f .. ".nfp")
+        paintutils.drawImage(img,1,1)
+    end
+end
 
+
+loadFrames()
 local monitor = peripheral.find("monitor")
 initializeMonitor(monitor)
 
-local img = paintutils.loadImage("frames/1.nfp")
-paintutils.drawImage(img,1,1)
-
-img = paintutils.loadImage("frames/2.nfp")
-paintutils.drawImage(img,1,1)
-
---img = paintutils.loadImage("frames/3.nfp")
---paintutils.drawImage(img,1,1)
-
---img = paintutils.loadImage("frames/4.nfp")
---paintutils.drawImage(img,1,1)
+for l = 0,100,1
+do
+    drawFrames()
+end
 
 
 resetMonitor(monitor)
