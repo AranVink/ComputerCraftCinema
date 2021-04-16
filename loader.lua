@@ -1,10 +1,13 @@
+-- Base path for HTTP download
+GitHubUrl = "https://raw.githubusercontent.com/AranVink/ComputerCraftCinema/main/"
+
 if not http then
     printError( "loader requires http API" )
     printError( "Set http_enable to true in ComputerCraft.cfg" )
     return
 end
  
-local function get( sUrl )
+function GetUrl( sUrl )
     write( "Connecting to " .. sUrl .. "... " )
 
     local ok, err = http.checkURL( sUrl )
@@ -28,24 +31,23 @@ local function get( sUrl )
     response.close()
     return sResponse
 end
- 
--- Determine file to download
-local sUrl = "https://raw.githubusercontent.com/AranVink/ComputerCraftCinema/main/screen.lua"--tArgs[1]
-local sFile = "screen.lua" --tArgs[2]
-local sPath = shell.resolve( sFile )
---if fs.exists( sPath ) then
---    print( "File already exists" )
---    return
---end
+
+function getAndSave(sUrl, sPath)
+    local res = GetUrl( sUrl )
+    if res then
+        fs.delete(sPath)
+        local file = fs.open( sPath, "wb" )
+        file.write( res )
+        file.close()
+
+    end
+end
 
 -- Do the get
-local res = get( sUrl )
+local sUrl = GitHubUrl + "screen.lua"--tArgs[1]
+local sFile = "screen.lua" --tArgs[2]
+local sPath = shell.resolve( sFile )
+
 print("Loading scripts")
-if res then
-    fs.delete(sPath)
-    local file = fs.open( sPath, "wb" )
-    file.write( res )
-    file.close()
-    print( "Load complete, executing: ")
-    shell.run("screen")
-end
+getAndSave(sUrl, sPath)
+shell.run("screen")
