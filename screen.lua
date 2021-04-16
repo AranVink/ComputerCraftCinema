@@ -2,7 +2,7 @@ local function initializeMonitor( monitor )
     term.redirect(monitor)
     term.setBackgroundColor(colors.black)
     term.clear()
-    term.setCurrentPos(1,1)
+    monitor.setCurrentPos(1,1)
     monitor.setTextScale(0.5)
 end
 
