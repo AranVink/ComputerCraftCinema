@@ -60,7 +60,8 @@ print("Loading scripts")
 
 local files = {
     "screen.lua",
-    "cinemahttp.lua"
+    "cinemahttp.lua",
+    "screeninmem.lua"
 }
 
 for file in list_iter(files) do
